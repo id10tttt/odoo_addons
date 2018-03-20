@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_pack_operation_lot_form_inherit" model="ir.ui.view">
+            <field name="name">stock.view_pack_operation_lot_form_inherit</field>
+            <field name="model">stock.pack.operation</field>
+            <field name="inherit_id" ref="stock.view_pack_operation_lot_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form//group//field[@name='pack_lot_ids']//tree//field[@name='qty']" position="attributes">
+                    <!--<field name="qty" />-->
+                    <attribute name="store">True</attribute>
+                </xpath>
+
+                <xpath expr="//form//group//field[@name='pack_lot_ids']//tree//button[@name='do_plus']" position="after">
+                    <!--<button name="do_allcount" string="全部" type="object" />-->
+                    <button name="do_allcount" string="全部" type="object" attrs="{'invisible': [('state_allow', '=', False)]}"/>
+                    <field name="state_allow" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!--<record id="view_pack_operation_lot_lot_form_inherit" model="ir.ui.view">-->
+            <!--<field name="name">stock.view_pack_operation_lot_form_inherit</field>-->
+            <!--<field name="model">stock.pack.operation.lot</field>-->
+            <!--<field name="inherit_id" ref="stock.view_pack_operation_lot_lot_form"/>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<xpath expr="//form//group//field[@name='qty']" position="replace">-->
+                    <!--<field name="qty" />-->
+                <!--</xpath>-->
+            <!--</field>-->
+        <!--</record>-->
+    </data>
+</odoo>

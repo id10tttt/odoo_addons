@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!-- 发票管理 -->
+        <record model="ir.ui.view" id="view_actual_invoice_manage_tree">
+            <field name="name">发票管理</field>
+            <field name="model">actual.invoice</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="发票管理" >
+                    <field name="partner_id"/>
+                    <field name="taxpayer_id" />
+                    <field name="company_id" />
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_actual_invoice_manage_form">
+            <field name="name">发票管理</field>
+            <field name="model">actual.invoice</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="发票管理">
+                <header>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="partner_id" options="{'no_create_edit': True}"/>
+                            <field name="taxpayer_id" />
+                            <field name="taxpayer_address_phone" />
+                            <field name="taxpayer_bank_no" />
+                        </group>
+                        <group>
+                            <field name="date_invoice"/>
+                            <field name="date_due" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="发票行">
+                            <field name="actual_invoice_line_id" mode="tree,kanban">
+                                <tree editable="bottom">
+                                    <field name="product_id" options="{'no_create_edit': True}"/>
+                                    <field name="name"/>
+                                    <field name="uom_id" options="{'no_create_edit': True}"/>
+                                    <field name="quantity" />
+                                    <field name="contain_tax_price" string="含税单价"/>
+                                    <field name="tax_id" string="税金"
+                                           widget="many2many_tags"
+                                           domain="[('company_id','=',parent.company_id)]"
+                                           options="{'no_create_edit': True}"
+                                    />
+                                    <field name="price_unit" string="不含税单价"/>
+                                    <field name="discount" />
+                                    <field name="price_total" />
+                                    <button name="cancel_after_verify"
+                                            states="draft" type="object"
+                                            string="核销"
+                                            class="oe_highlight"
+                                            attrs="{'visible':[('state','=','draft')]}"
+                                            groups="account_fresh.group_account_advanced_user"
+                                    />
+                                    <button name="view_after_verify"
+                                            states="verify,finish"
+                                            type="object" string="查看"
+                                            class="oe_highlight"
+                                            attrs="{'invisible':[('state','=','draft')]}"
+                                            groups="account_fresh.group_account_advanced_user"
+                                    />
+                                    <field name="state" widget="statusbar" statusbar_visible="draft,verify,finish"/>
+                                </tree>
+                            </field>
+
+                            <group class="oe_subtotal_footer oe_right">
+                                <field name="amount_untaxed" string="未含税金额"/>
+                                <field name="amount_tax" string="税金"/>
+                                <field name="amount_total" string="总计" class="oe_subtotal_footer_separator"/>
+                            </group>
+                        </page>
+                        <page string="其他信息">
+                            <group>
+                                <field name="company_id" options="{'no_create_edit': True}"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_actual_invoice_manage">
+            <field name="name">实际发票</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">actual.invoice</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_actual_invoice_manage_tree"/>
+        </record>
+
+        <record model="ir.ui.view" id="view_actual_invoice_verify_form">
+            <field name="name">核销管理</field>
+            <field name="model">actual.invoice.line</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="核销" editable="bottom">
+                    <header>
+                        <button name="verify_valid"
+                                states="draft"
+                                string="验证"
+                                type="object"
+                                class="oe_highlight"
+                                attrs="{'invisible':[('state','!=','draft')]}"
+                                groups="account_fresh.group_account_advanced_user"
+                        />
+                        <button name="verify_final"
+                                states="verify"
+                                type="object"
+                                class="oe_highlight"
+                                string="核销"
+                                attrs="{'invisible':['|',('state','=','draft'),('state','=','finish')]}"
+                                groups="account_fresh.group_account_advanced_user"
+                        />
+                        <button name="cancel_verify"
+                                states="finish"
+                                string="取消核销"
+                                type="object"
+                                class="oe_highlight"
+                                attrs="{'invisible':[('state','!=','finish')]}"
+                                groups="account_fresh.group_account_advanced_user"
+                        />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,verify,finish"/>
+                    </header>
+
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="product_id" readonly="True"/>
+                            </group>
+                            <group>
+                                <field name="quantity" readonly="True"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="核销">
+                                <field name="actual_verify_line_ids">
+                                    <tree editable="bottom">
+                                        <field name="purchase_bill" string="产品"/>
+                                        <field name="product_note" string="说明" />
+                                        <field name="quantity"/>
+                                        <field name="verify_quantity" />
+                                        <field name="cav_sys_invoice" string="核销生成发票" readonly="True" options="{'no_create_edit': True}"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <menuitem id="menu_actual_invoice"
+                  action="act_actual_invoice_manage"
+                  name="实际发票管理"
+                  parent="account.menu_finance_payables"
+                  groups="account.group_account_manager"
+                  sequence="44"
+        />
+    </data>
+</odoo>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="purchase_order_form_inherit" model="ir.ui.view">
+            <field name="name">purchase.purchase_order_form_inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form//sheet//group//group//field[@name='partner_ref']" position="after">
+                    <field name="purchase_number" string="单号"/>
+                    <field name="principal" string="负责人" />
+                </xpath>
+
+                <xpath expr="//notebook//page//field[@name='order_line']//form//sheet//group//group//field[@name='price_unit']" position="after">
+                    <field name="contain_tax_price" string="含税单价"/>
+                </xpath>
+
+                <xpath expr="//notebook//page//field[@name='order_line']//form//sheet//group//group//field[@name='price_unit']" position="replace">
+                    <field name="price_unit" string="不含税单价" readonly="1" />
+                </xpath>
+
+                <xpath expr="//notebook//page//field[@name='order_line']//tree//field[@name='price_unit']" position="before">
+                    <field name="vehicle_id" string="车牌号"/>
+                    <field name="contain_tax_price" string="含税单价"/>
+                </xpath>
+
+                <xpath expr="//notebook//page//field[@name='order_line']//tree//field[@name='price_unit']" position="replace">
+                    <field name="price_unit" string="不含税单价"/>
+                </xpath>
+
+                <!--<xpath expr="//notebook//page//field[@name='order_line']//tree//field[@name='price_unit']" position="attributes">-->
+                    <!--<attribute name="string">不含税单价</attribute>-->
+                <!--</xpath>-->
+
+                <xpath expr="//notebook//page//field[@name='order_line']//tree//field[@name='price_subtotal']" position="attributes">
+                    <attribute name="string">不含税小计</attribute>
+                    <!--<attribute name="readonly">False</attribute>-->
+                </xpath>
+
+                <xpath expr="//notebook//page//group//field[@name='amount_total']" position="attributes">
+                    <attribute name="string">含税总计</attribute>
+                </xpath>
+                <xpath expr="//notebook//page//group//div//label" position="attributes">
+                    <attribute name="string">含税总计</attribute>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

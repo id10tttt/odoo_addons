@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="0">
+
+        <!-- 创建一个群组 -->
+        <record model="ir.module.category" id="invoice_management">
+          <field name="name">实际发票管理</field>
+          <field name="description">实际发票管理</field>
+          <field name="sequence">319</field>
+          <field name="category_id" ref="base.user_root"/>
+        </record>
+
+        <!-- 创建群组 用户 类型 -->
+        <record id="group_account_normal_user" model="res.groups">
+            <field name="name">用户</field>
+            <field name="category_id" ref="account_fresh.invoice_management"/>
+            <field name="implied_ids" eval="[(4, ref('account_fresh.invoice_management'))]"/>
+        </record>
+
+        <!-- 创建群组 管理员 类型 -->
+        <record id="group_account_advanced_user" model="res.groups">
+            <field name="name">管理员</field>
+            <field name="implied_ids" eval="[(4, ref('account_fresh.group_account_normal_user'))]"/>
+            <field name="category_id" ref="account_fresh.invoice_management"/>
+        </record>
+
+
+    </data>
+</odoo>

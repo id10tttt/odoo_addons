@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!-- 更改车辆里面的公司为必填字段 -->
+        <record id="fleet_vehicle_view_form_inherit" model="ir.ui.view">
+            <field name="name">fleet.vehicle_form_inherit</field>
+            <field name="model">fleet.vehicle</field>
+            <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form//sheet//group//group//field[@name='company_id']" position="attributes">
+                    <attribute name="required">True</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

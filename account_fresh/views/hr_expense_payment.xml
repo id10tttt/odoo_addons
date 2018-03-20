@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="hr_expense_register_payment_view_form_inherit" model="ir.ui.view">
+            <field name="name">hr.expense.register.payment.wizard_form</field>
+            <field name="model">hr.expense.register.payment.wizard</field>
+            <field name="inherit_id" ref="hr_expense.hr_expense_register_payment_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form//sheet//group//group//field[@name='communication']" position="after">
+                    <field name="cash_id"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

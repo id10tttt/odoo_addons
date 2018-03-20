@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_picking_form_inherit" model="ir.ui.view">
+            <field name="name">stock.picking_view_picking_form_inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form//header//button[@name='do_new_transfer']" position="attributes">
+                    <attribute name="context">{'purchase':'85dbdb21fe502c4d7a1e81bca0aa396d'}</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
