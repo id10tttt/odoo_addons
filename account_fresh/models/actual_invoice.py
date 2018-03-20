@@ -14,6 +14,7 @@ class ActualInvoice(models.Model):
     新增一个发票的录入界面，和系统的发票界面类似，只是字段有些许差异
     '''
     _name = 'actual.invoice'
+    _inherit = 'mail.thread'
     _description = 'Allow user input actual invoice'
 
     # name = fields.Char('actual invoice', required=True)
@@ -151,6 +152,22 @@ class ActualInvoiceLine(models.Model):
 
 
     def cancel_after_verify(self):
+        '''
+        使用
+            return {
+                        'name': _('核销管理'),
+                        'type': 'ir.actions.act_window',
+                        'view_type': 'form',
+                        'view_mode': 'form',
+                        'res_model': 'actual.invoice.line',
+                        'views': [(view_id, 'form')],
+                        'view_id': view_id,
+                        'target': 'new',
+                        'res_id': self.ids[0],
+                        'context': action_ctx
+                    }
+        返回小窗口
+        '''
         try:
             action_ctx = dict(self.env.context)
             state_id = []
