@@ -9,6 +9,14 @@
                 <xpath expr="//form//sheet//group//group//field[@name='tax_ids']" position="replace">
                     <field name="tax_ids" domain="[('type_tax_use', '=', 'purchase')]" widget="many2many_tags"/>
                 </xpath>
+                <xpath expr="//form//sheet//group//group//field[@name='unit_amount']" position="before">
+                    <field name="contain_tax_price_unit" string="含税单价"/>
+                </xpath>
+
+                <xpath expr="//form//sheet//group//group//field[@name='unit_amount']" position="replace">
+                    <field name="unit_amount" readonly="True" string="不含税单价"/>
+                </xpath>
+
             </field>
         </record>
     </data>

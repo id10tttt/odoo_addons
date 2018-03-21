@@ -16,8 +16,8 @@
                 'stock_account2'],
     'application': True,
     'data': [
-        'security/account_security.xml',
-        'security/ir.model.access.csv',
+        # 'security/account_security.xml',
+        # 'security/ir.model.access.csv',
         'views/account_invoice.xml',
         'views/account_payment.xml',
         'views/hr_expense_payment.xml',
@@ -29,7 +29,7 @@
         'views/stock_pack_operation.xml',
         'views/res_company.xml',
         'views/stock_picking.xml',
-        'views/actual_invoice_view.xml',
+        # 'views/actual_invoice_view.xml',
         'views/stock_move.xml',
         'views/fleet_vehicle.xml'
     ],

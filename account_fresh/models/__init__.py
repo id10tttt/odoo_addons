@@ -8,7 +8,7 @@ from . import stock
 from . import stock_pack_operation
 from . import res_company
 from . import stock_picking
-from . import actual_invoice
+# from . import actual_invoice
 from . import account_tax
 
 from . import models
