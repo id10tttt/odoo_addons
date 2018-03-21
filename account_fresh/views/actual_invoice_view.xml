@@ -46,7 +46,7 @@
                                     <field name="contain_tax_price" string="含税单价"/>
                                     <field name="tax_id" string="税金"
                                            widget="many2many_tags"
-                                           domain="[('company_id','=',parent.company_id)]"
+                                           domain="[('company_id','=',parent.company_id),('type_tax_use', '=', 'purchase')]"
                                            options="{'no_create_edit': True}"
                                     />
                                     <field name="price_unit" string="不含税单价"/>

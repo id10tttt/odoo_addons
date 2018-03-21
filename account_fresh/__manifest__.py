@@ -25,7 +25,7 @@
         'views/purchase.xml',
         'views/sale.xml',
         # 'views/stock_quant.xml',
-        # 'views/hr_expense.xml',
+        'views/hr_expense.xml',
         'views/stock_pack_operation.xml',
         'views/res_company.xml',
         'views/stock_picking.xml',

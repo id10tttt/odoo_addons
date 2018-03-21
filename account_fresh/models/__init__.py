@@ -16,4 +16,4 @@ from . import models
 from . import stock_move
 from . import fleet_vehicle
 # from . import stock_quant
-# from . import hr_expense
+from . import hr_expense
