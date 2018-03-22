@@ -20,7 +20,7 @@ class SaleOrderLineExternal(models.Model):
     _inherit = 'sale.order.line'
     _name = 'sale.order.line'
 
-    contain_tax_price = fields.Float(string='tax_price', required=True)
+    contain_tax_price = fields.Float(string='tax_price', required=True, default=0.0)
     price_unit = fields.Float(string='no_tax_price', compute='_compute_no_tax_price')
     account_analytic_id = fields.Many2one('account.analytic.account','analytic_account')
 

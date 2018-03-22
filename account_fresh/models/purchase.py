@@ -24,7 +24,7 @@ class PurchaseOrderLineExternal(models.Model):
     _inherit = 'purchase.order.line'
     _name = 'purchase.order.line'
 
-    contain_tax_price = fields.Float(string='tax_price', required=True)
+    contain_tax_price = fields.Float(string='tax_price', required=True, default=0.0)
     price_unit = fields.Float(string='no_tax_price',
                               compute='_compute_no_tax_price')
 
