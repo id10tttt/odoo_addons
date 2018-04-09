@@ -5,3 +5,11 @@ access_actual_invoice_verify_normal,actual.invoice.verify,model_actual_invoice_v
 access_actual_invoice_uinvoice,actual.invoice,model_actual_invoice,account_fresh.group_account_advanced_user,1,1,1,1
 access_actual_invoice_line_uinvoice,actual.invoice.line,model_actual_invoice_line,account_fresh.group_account_advanced_user,1,1,1,1
 access_actual_invoice_verify_uinvoice,actual.invoice.verify,model_actual_invoice_verify,account_fresh.group_account_advanced_user,1,1,1,1
+access_ac_tb_group,access_ac_tb_group,model_ac_tb_group,,1,1,1,1
+access_stock_picking_o_user,stock.picking user,stock.model_stock_picking,account_fresh.group_stock_outside_user,1,0,0,0
+access_product_template_stock_o_user,product.template stock user,product.model_product_template,account_fresh.group_stock_outside_user,1,0,0,0
+access_stock_move_o_user,stock.move user,stock.model_stock_move,account_fresh.group_stock_outside_user,1,0,0,0
+access_stock_move_operation_link_o_user,stock.move.operation.link user,stock.model_stock_move_operation_link,account_fresh.group_stock_outside_user,1,0,0,0
+access_stock_production_lot_o_user,stock.production.lot user,stock.model_stock_production_lot,account_fresh.group_stock_outside_user,1,0,0,0
+access_stock_forecast_o_user,report.stock.forecast.user,stock.model_report_stock_forecast,account_fresh.group_stock_outside_user,1,0,0,0
+access_stock_picking_type_o_user,stock.picking.type user,stock.model_stock_picking_type,account_fresh.group_stock_outside_user,1,0,0,0

@@ -14,9 +14,8 @@ class FleetVehicle(models.Model):
 
     @api.constrains('license_plate')
     def _validate_plate(self):
-        company = self.env['res.company']._company_default_get()
         res = self.env['fleet.vehicle'].sudo().search([('license_plate', '=', self.license_plate),
-                                                       ('company_id', '=', company.id)])
+                                                       ('company_id', '=', self.company_id.id)])
         if len(res) > 1:
             raise ValidationError(u'已经存在该车牌 [%s]，不能创建相同的车牌!!!' % self.license_plate)
         else:

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="group_stock_outside_user" model="res.groups">
+            <field name="name">外部用户</field>
+            <field name="category_id" ref="base.module_category_warehouse_management"/>
+            <field name="implied_ids" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+
+        <record id="stock.menu_stock_root" model="ir.ui.menu">
+            <!-- Use the special many2many value syntax to add a child record,
+                 and the `ref()` method to resolve the group XML ID -->
+            <field name="groups_id" eval="[(4,ref('group_stock_outside_user'))]"/>
+        </record>
+
+        <!--<record id="bi_generic_import.gen_delivery_wizard_import" model="ir.ui.menu">-->
+            <!--&lt;!&ndash; Use the special many2many value syntax to add a child record,-->
+                 <!--and the `ref()` method to resolve the group XML ID &ndash;&gt;-->
+            <!--<field name="groups_id" eval="[(4,ref('group_stock_outside_user'))]"/>-->
+        <!--</record>-->
+
+        <record id="hr.menu_hr_root" model="ir.ui.menu">
+            <field name="groups_id" eval="[(4,ref('group_stock_outside_user'))]"/>
+        </record>
+
+        <record id="stock_outside_rule" model="ir.rule">
+            <field name="name">管理外部用户权限</field>
+            <field name="model_id" ref="product.model_product_template"/>
+            <field name="groups" eval="[(6,0, [ref('account_fresh.group_stock_outside_user')])]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="domain_force">[('product_owner.name','=',user.name)]</field>
+        </record>
+
+        <record id="stock_outside_hr_rule" model="ir.rule">
+            <field name="name">管理外部用户权限</field>
+            <field name="model_id" ref="hr.model_hr_employee"/>
+            <field name="groups" eval="[(6,0, [ref('account_fresh.group_stock_outside_user')])]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="domain_force">[('name','=',user.name)]</field>
+        </record>
+
+        <record id="stock_outside_picking_rule" model="ir.rule">
+            <field name="name">管理外部用户权限</field>
+            <field name="model_id" ref="stock.picking.type"/>
+            <field name="groups" eval="[(6,0, [ref('account_fresh.group_stock_outside_user')])]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="domain_force">[('name','=',user.name)]</field>
+        </record>
+
+    </data>
+</odoo>

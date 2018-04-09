@@ -12,16 +12,16 @@ class HrExpense(models.Model):
     contain_tax_price_unit = fields.Float(string='tax_price')
 
     unit_amount = fields.Float(string='Unit Price',
+                               default=0.0,
                                compute='_compute_no_tax_price',
                                readonly=True,
-                               store=True,
                                required=True,
                                states={'draft': [('readonly', False)], 'refused': [('readonly', False)]},
                                digits=dp.get_precision('Product Price'))
 
 
     @api.multi
-    @api.depends('contain_tax_price_unit', 'unit_amount', 'tax_ids')
+    @api.depends('contain_tax_price_unit', 'tax_ids')
     def _compute_no_tax_price(self):
         """
         计算不含税单价，当含税单价、不含税单价、税率变化时，自动计算不含税单价
