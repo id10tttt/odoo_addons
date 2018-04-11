@@ -8,7 +8,8 @@ class FleetVehicle(models.Model):
     _inherit = 'fleet.vehicle'
     _name = 'fleet.vehicle'
 
-    # company_id = fields.Many2one('res.company', 'Company', required=True)
+    supplier_fleet = fields.Many2one('res.partner',
+                                     u'供应商')
 
 
 

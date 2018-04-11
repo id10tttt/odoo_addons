@@ -24,3 +24,4 @@ from . import hr_employee
 from . import product_uom
 
 from . import ac_tb_group
+from . import account_move

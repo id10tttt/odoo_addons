@@ -7,12 +7,15 @@
             <field name="model">fleet.vehicle</field>
             <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
             <field name="arch" type="xml">
-                <!--<xpath expr="//form//sheet//group//group//field[@name='company_id']" position="replace">-->
-                    <!--<field name="company_id"/>-->
-                <!--</xpath>-->
+
                 <xpath expr="//form//sheet//group//group//field[@name='company_id']" position="attributes">
                     <attribute name="required">True</attribute>
                 </xpath>
+
+                <xpath expr="//form//sheet//group//group//field[@name='company_id']" position="after">
+                    <field name="supplier_fleet" string="供应商"/>
+                </xpath>
+
             </field>
         </record>
     </data>

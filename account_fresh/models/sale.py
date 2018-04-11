@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from odoo import api, fields, models, _
+from odoo.tools import float_is_zero, float_compare, DEFAULT_SERVER_DATETIME_FORMAT
+from odoo.exceptions import UserError
 import traceback
 import logging
 _logger = logging.getLogger(__name__)
@@ -78,3 +80,23 @@ class SaleOrderLineExternal(models.Model):
             return res
         except Exception,e:
             _logger.warning(traceback.format_exc())
+
+    @api.multi
+    def invoice_line_create(self, invoice_id, qty):
+        """
+        Create an invoice line. The quantity to invoice can be positive (invoice) or negative
+        (refund).
+
+        :param invoice_id: integer
+        :param qty: float quantity to invoice
+        """
+        try:
+            precision = self.env['decimal.precision'].precision_get('Product Unit of Measure')
+            for line in self:
+                if not float_is_zero(qty, precision_digits=precision):
+                    vals = line._prepare_invoice_line(qty=qty)
+                    if vals:
+                        vals.update({'invoice_id': invoice_id, 'sale_line_ids': [(6, 0, [line.id])]})
+                        self.env['account.invoice.line'].create(vals)
+        except UserError,e:
+            raise UserError(e.message)

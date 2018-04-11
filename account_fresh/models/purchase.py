@@ -26,7 +26,8 @@ class PurchaseOrderLineExternal(models.Model):
 
     contain_tax_price = fields.Float(string='tax_price', required=True, default=0.0)
     price_unit = fields.Float(string='no_tax_price',
-                              compute='_compute_no_tax_price')
+                              compute='_compute_no_tax_price',
+                              default=0.0)
 
     vehicle_id = fields.Many2one('fleet.vehicle', u'车牌号',
                                  ondelete='restrict')

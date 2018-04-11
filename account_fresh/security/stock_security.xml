@@ -45,16 +45,16 @@
             <field name="domain_force">[('name','=',user.name)]</field>
         </record>
 
-        <record id="stock_outside_picking_rule" model="ir.rule">
-            <field name="name">管理外部用户权限</field>
-            <field name="model_id" ref="stock.picking.type"/>
-            <field name="groups" eval="[(6,0, [ref('account_fresh.group_stock_outside_user')])]"/>
-            <field name="perm_read" eval="True"/>
-            <field name="perm_write" eval="False"/>
-            <field name="perm_create" eval="False"/>
-            <field name="perm_unlink" eval="False"/>
-            <field name="domain_force">[('name','=',user.name)]</field>
-        </record>
+        <!--<record id="stock_outside_picking_rule" model="ir.rule">-->
+            <!--<field name="name">管理外部用户权限</field>-->
+            <!--<field name="model_id" ref="stock.picking.type"/>-->
+            <!--<field name="groups" eval="[(6,0, [ref('account_fresh.group_stock_outside_user')])]"/>-->
+            <!--<field name="perm_read" eval="True"/>-->
+            <!--<field name="perm_write" eval="False"/>-->
+            <!--<field name="perm_create" eval="False"/>-->
+            <!--<field name="perm_unlink" eval="False"/>-->
+            <!--<field name="domain_force">[('name','=',user.name)]</field>-->
+        <!--</record>-->
 
     </data>
 </odoo>

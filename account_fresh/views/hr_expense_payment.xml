@@ -10,16 +10,6 @@
                     <field name="cash_id"/>
                 </xpath>
 
-                <xpath expr="//form//sheet//group//group//div[@name='amount_div']" position="after">
-                    <field name="amount_total_price" string="实际支付" />
-                    <field name="account_diff_id"
-                           string="差异科目"/>
-                </xpath>
-
-                <xpath expr="//form//sheet//group//group//div//field[@name='amount']" position="attributes">
-                    <attribute name="readonly">True</attribute>
-                </xpath>
-
             </field>
         </record>
 
