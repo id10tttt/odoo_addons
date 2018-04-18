@@ -13,7 +13,7 @@
                 <!--科目-->
                 <xpath expr="//form//sheet//group//group//field[@name='account_id']" position="replace">
                     <field name="account_id"
-                           domain="[('internal_type', '=', 'other'), ('parent_id', '!=', False)]"
+                           domain="[('internal_type', '=', 'other'), ('child_ids', '=', False)]"
                            options="{'no_create_edit': True}"/>
                 </xpath>
 
@@ -32,13 +32,13 @@
                            groups="account.group_account_user"
                            domain="[('company_id', '=', parent.company_id),
                                     ('internal_type', '=', 'other'),
-                                    ('parent_id', '!=', False)]"
+                                    ('child_ids', '=', False)]"
                            options="{'no_create_edit': True}"/>
                 </xpath>
 
                 <!--客户发票上面的科目-->
                 <xpath expr="//page[@name='other_info']//group//group//field[@name='account_id']" position="replace">
-                    <field domain="[('company_id', '=', company_id),('internal_type','=', 'receivable'), ('deprecated', '=', False),('parent_id', '!=', False)]"
+                    <field domain="[('company_id', '=', company_id),('internal_type','=', 'receivable'), ('deprecated', '=', False),('child_ids', '=', False)]"
                            name="account_id"
                            options="{'no_create_edit': True}"
                            groups="account.group_account_manager"/>
@@ -56,7 +56,7 @@
                 <xpath expr="//field[@name='invoice_line_ids']//tree//field[@name='account_id']" position="replace">
                     <field name="account_id"
                            groups="account.group_account_user"
-                           domain="[('company_id', '=', parent.company_id), ('internal_type', '=', 'other'), ('deprecated', '=', False), ('parent_id', '!=', False)]"
+                           domain="[('company_id', '=', parent.company_id), ('internal_type', '=', 'other'), ('deprecated', '=', False), ('child_ids', '=', False)]"
                            options="{'no_create_edit': True}"/>
                 </xpath>
 
@@ -75,7 +75,7 @@
                     <field name="account_id"
                            domain="[('company_id', '=', parent.company_id),
                                     ('deprecated', '=', False),
-                                    ('parent_id', '!=', False)]"
+                                    ('child_ids', '=', False)]"
                            options="{'no_create_edit': True}"
                     />
                 </xpath>
@@ -92,14 +92,14 @@
                 <!--应收账款-->
                 <xpath expr="//page//group//group//field[@name='property_account_receivable_id']" position="replace">
                     <field name="property_account_receivable_id"
-                           domain="[('parent_id', '!=', False),('user_type_id', 'in', ['应收','Receivable'])]"
+                           domain="[('child_ids', '=', False),('user_type_id', 'in', ['应收','Receivable'])]"
                            options="{'no_create_edit': True}"
                     />
                 </xpath>
                 <!--应付账款-->
                 <xpath expr="//page//group//group//field[@name='property_account_payable_id']" position="replace">
                     <field name="property_account_payable_id"
-                           domain="[('parent_id', '!=', False),('user_type_id', 'in', ['应付','Payable'])]"
+                           domain="[('child_ids', '=', False),('user_type_id', 'in', ['应付','Payable'])]"
                            options="{'no_create_edit': True}"
                     />
                 </xpath>
@@ -117,7 +117,7 @@
                 <xpath expr="//page//group[@name='properties']//group//field[@name='property_account_income_id']"
                        position="replace">
                     <field name="property_account_income_id"
-                           domain="[('internal_type','=','other'),('deprecated','=',False),('parent_id', '!=', False)]"
+                           domain="[('internal_type','=','other'),('deprecated','=',False),('child_ids', '=', False)]"
                            groups="account.group_account_user"
                            options="{'no_create_edit': True}"
                     />
@@ -127,7 +127,7 @@
                 <xpath expr="//page//group[@name='properties']//group//field[@name='property_account_expense_id']"
                        position="replace">
                     <field name="property_account_expense_id"
-                           domain="[('internal_type','=','other'),('deprecated','=',False),('parent_id', '!=', False)]"
+                           domain="[('internal_type','=','other'),('deprecated','=',False),('child_ids', '=', False)]"
                            groups="account.group_account_user"
                            options="{'no_create_edit': True}"
                     />
@@ -145,7 +145,7 @@
                 <!--价格差异科目-->
                 <xpath expr="//field[@name='property_account_creditor_price_difference']" position="replace">
                     <field name="property_account_creditor_price_difference"
-                           domain="[('deprecated','=',False),('parent_id', '!=', False)]"
+                           domain="[('deprecated','=',False),('child_ids', '=', False)]"
                            attrs="{'readonly':[('purchase_ok', '=', 0)]}"
                            options="{'no_create_edit': True}"
                     />
@@ -164,7 +164,7 @@
                 <xpath expr="//group[@name='account_stock_property']//field[@name='property_stock_account_input_categ_id']"
                        position="replace">
                     <field name="property_stock_account_input_categ_id"
-                           domain="[('deprecated', '=', False),('parent_id', '!=', False)]"
+                           domain="[('deprecated', '=', False),('child_ids', '=', False)]"
                            options="{'no_create_edit': True}"
                     />
                 </xpath>
@@ -172,7 +172,7 @@
                 <xpath expr="//group[@name='account_stock_property']//field[@name='property_stock_account_output_categ_id']"
                        position="replace">
                     <field name="property_stock_account_output_categ_id"
-                           domain="[('deprecated', '=', False),('parent_id', '!=', False)]"
+                           domain="[('deprecated', '=', False),('child_ids', '=', False)]"
                            options="{'no_create_edit': True}"
                     />
                 </xpath>
@@ -180,7 +180,7 @@
                 <xpath expr="//group[@name='account_stock_property']//field[@name='property_stock_valuation_account_id']"
                        position="replace">
                     <field name="property_stock_valuation_account_id"
-                           domain="[('deprecated', '=', False),('parent_id', '!=', False)]"
+                           domain="[('deprecated', '=', False),('child_ids', '=', False)]"
                            options="{'no_create_edit': True}"
                     />
                 </xpath>
@@ -197,7 +197,7 @@
                 <!--收入科目-->
                 <xpath expr="//group//field[@name='property_account_income_categ_id']" position="replace">
                     <field name="property_account_income_categ_id"
-                           domain="[('internal_type','=','other'),('deprecated', '=', False),('parent_id', '!=', False)]"
+                           domain="[('internal_type','=','other'),('deprecated', '=', False),('child_ids', '=', False)]"
                            options="{'no_create_edit': True}"
                     />
                 </xpath>
@@ -205,7 +205,7 @@
                 <!--费用科目-->
                 <xpath expr="//group//field[@name='property_account_expense_categ_id']" position="replace">
                     <field name="property_account_expense_categ_id"
-                           domain="[('internal_type','=','other'),('deprecated', '=', False),('parent_id', '!=', False)]"
+                           domain="[('internal_type','=','other'),('deprecated', '=', False),('child_ids', '=', False)]"
                            options="{'no_create_edit': True}"
                     />
                 </xpath>
@@ -213,7 +213,7 @@
                 <!--价格差异科目-->
                 <xpath expr="//field[@name='property_account_creditor_price_difference_categ']" position="replace">
                     <field name="property_account_creditor_price_difference_categ"
-                           domain="[('deprecated', '=', False),('parent_id', '!=', False)]"
+                           domain="[('deprecated', '=', False),('child_ids', '=', False)]"
                            options="{'no_create_edit': True}"
                     />
                 </xpath>
@@ -230,7 +230,7 @@
                 <xpath expr="//form//group//group//field[@name='account_asset_id']" position="replace">
                     <field name="account_asset_id"
                            nolabel="1"
-                           domain="[('parent_id', '!=', False)]"
+                           domain="[('child_ids', '=', False)]"
                            options="{'no_create_edit': True}"
                            attrs="{'invisible': [('type','=', False)]}"/>
                 </xpath>
@@ -238,7 +238,7 @@
                 <xpath expr="//form//group//group//field[@name='account_depreciation_id']" position="replace">
                     <field name="account_depreciation_id"
                            nolabel="1"
-                           domain="[('parent_id', '!=', False)]"
+                           domain="[('child_ids', '=', False)]"
                            options="{'no_create_edit': True}"
                            attrs="{'invisible': [('type','=', False)]}"/>
                 </xpath>
@@ -246,7 +246,7 @@
                 <xpath expr="//form//group//group//field[@name='account_depreciation_expense_id']" position="replace">
                     <field name="account_depreciation_expense_id"
                            nolabel="1"
-                           domain="[('parent_id', '!=', False)]"
+                           domain="[('child_ids', '=', False)]"
                            options="{'no_create_edit': True}"
                            attrs="{'invisible': [('type','=', False)]}"/>
                 </xpath>

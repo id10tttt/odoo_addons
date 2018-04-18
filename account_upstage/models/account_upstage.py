@@ -16,4 +16,4 @@ class HrExpense(models.Model):
         if self.account_id:
             res = self.env['account.account'].search([('parent_id', '=', self.account_id.id)])
             if res:
-                raise ValidationError('必须选择末级科目！ [%s %s] 不是末级科目' % (self.account_id.code, self.account_id.name))
+                raise ValidationError('必须选择末级科目！ [{0} {1}] 不是末级科目'.format(self.account_id.code, self.account_id.name))
