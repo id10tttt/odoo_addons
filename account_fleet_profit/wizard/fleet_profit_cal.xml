@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+         <record id="view_fleet_profit_wizard_form" model="ir.ui.view">
+            <field name="name">view.fleet.profit.wizard</field>
+            <field name="model">fleet.profit.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="输出期间车辆利润">
+                    <group>
+                        <field name="start_date" />
+                        <field name="end_date"/>
+                        <field name="company_id"/>
+                    </group>
+                    <footer>
+                    <button name="calculate_fleet_profit"
+                            string="计算期间车辆利润"
+                            type="object"
+                            class="oe_highlight"
+                            confirm="确定计算?"
+                    />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_fleet_profit_wizard_act_window" model="ir.actions.act_window">
+            <field name="type">ir.actions.act_window</field>
+            <field name="name">计算期间车辆利润</field>
+            <field name="res_model">fleet.profit.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_type">form</field>
+            <field name="target">new</field>
+        </record>
+
+
+        <record id="menu_fleet_profit_wizard" model="ir.ui.menu" >
+            <field name="name">计算期间车辆利润</field>
+            <field name="action" ref="action_fleet_profit_wizard_act_window" />
+            <field name="parent_id" ref="account_period.menu_finance_periodical_processing" />
+        </record>
+
+    </data>
+</odoo>

@@ -24,6 +24,5 @@
             <field name="category_id" ref="account_fresh.invoice_management"/>
         </record>
 
-
     </data>
 </odoo>

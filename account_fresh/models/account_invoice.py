@@ -32,6 +32,47 @@ class AccountInvoice(models.Model):
 
     source_invoice = fields.Many2one('account.invoice',u'源发票单据')
 
+    @api.model
+    def invoice_line_move_line_get(self):
+        res = []
+        for line in self.invoice_line_ids:
+            if line.quantity == 0:
+                continue
+            tax_ids = []
+            for tax in line.invoice_line_tax_ids:
+                tax_ids.append((4, tax.id, None))
+                for child in tax.children_tax_ids:
+                    if child.type_tax_use != 'none':
+                        tax_ids.append((4, child.id, None))
+            analytic_tag_ids = [(4, analytic_tag.id, None) for analytic_tag in line.analytic_tag_ids]
+
+            move_line_dict = {
+                'invl_id': line.id,
+                'type': 'src',
+                'name': line.name.split('\n')[0][:64],
+                'price_unit': line.price_unit,
+                'quantity': line.quantity,
+                'price': line.price_subtotal,
+                'account_id': line.account_id.id,
+                'product_id': line.product_id.id,
+                'uom_id': line.uom_id.id,
+                'account_analytic_id': line.account_analytic_id.id,
+                'tax_ids': tax_ids,
+                'invoice_id': self.id,
+                'analytic_tag_ids': analytic_tag_ids,
+                'vehicle_id': line.vehicle_id.id
+            }
+            if line['account_analytic_id']:
+                move_line_dict['analytic_line_ids'] = [(0, 0, line._get_analytic_line())]
+            res.append(move_line_dict)
+        return res
+
+    @api.model
+    def line_get_convert(self, line, part):
+        res = super(AccountInvoice, self).line_get_convert(line, part)
+        res['vehicle_id'] = line.get('vehicle_id', False)
+        return res
+
     @api.multi
     def action_invoice_open_invoice(self):
         # lots of duplicate calls to action_invoice_open, so we remove those already open
@@ -69,7 +110,6 @@ class AccountInvoice(models.Model):
             diff_currency = inv.currency_id != company_currency
             # create one move line for the total and possibly adjust the other lines amount
             total, total_currency, iml = inv.with_context(ctx).compute_invoice_totals(company_currency, iml)
-
             name = inv.name or '/'
             if inv.payment_term_id:
                 totlines = \
@@ -97,7 +137,7 @@ class AccountInvoice(models.Model):
                         'date_maturity': t[0],
                         'amount_currency': diff_currency and amount_currency,
                         'currency_id': diff_currency and inv.currency_id.id,
-                        'invoice_id': inv.id
+                        'invoice_id': inv.id,
                     })
             else:
                 iml.append({
@@ -108,11 +148,10 @@ class AccountInvoice(models.Model):
                     'date_maturity': inv.date_due,
                     'amount_currency': diff_currency and total_currency,
                     'currency_id': diff_currency and inv.currency_id.id,
-                    'invoice_id': inv.id
+                    'invoice_id': inv.id,
                 })
             part = self.env['res.partner']._find_accounting_partner(inv.partner_id)
             line = [(0, 0, self.line_get_convert(l, part.id)) for l in iml]
-
 
             line = inv.group_lines(iml, line)
 
@@ -137,6 +176,7 @@ class AccountInvoice(models.Model):
 
 
             date = inv.date or inv.date_invoice
+
             move_vals = {
                 'ref': inv.reference,
                 'line_ids': line,

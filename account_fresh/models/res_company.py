@@ -5,7 +5,7 @@ from odoo import models, fields
 
 class ResCompany(models.Model):
     '''
-    添加时候允许在仓库里面扫描操作时，可以将数量，在点击的时候补全!
+    添加公司允许在仓库里面扫描操作时，可以将数量，在点击的时候补全!
     '''
     _inherit = 'res.company'
 

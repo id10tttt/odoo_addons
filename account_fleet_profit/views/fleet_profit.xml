@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record id="view_fleet_profit_tree" model="ir.ui.view">
+            <field name="name">view.fleet.profit.tree</field>
+            <field name="model">fleet.profit</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="车辆利润表" create="0">
+                    <field name="vehicle_fleet"/>
+                    <field name="vehicle_date"/>
+                    <field name="vehicle_income"/>
+                    <field name="vehicle_cost"/>
+                    <field name="vehicle_profit"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_fleet_profit_pivot" model="ir.ui.view">
+            <field name="name">view.fleet.profit.pivot</field>
+            <field name="model">fleet.profit</field>
+            <field name="type">pivot</field>
+            <field name="arch" type="xml">
+                <pivot string="车辆利润表" create="0">
+                    <field name="vehicle_fleet"/>
+                    <field name="vehicle_date" type="col"/>
+                    <field name="vehicle_income" type="measure"/>
+                    <field name="vehicle_cost" type="measure"/>
+                    <field name="vehicle_profit" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record id="view_fleet_profit_graph" model="ir.ui.view">
+            <field name="name">view.fleet.profit.graph</field>
+            <field name="model">fleet.profit</field>
+            <field name="type">graph</field>
+            <field name="arch" type="xml">
+                <graph string="车辆利润表" create="0">
+                    <field name="vehicle_fleet"/>
+                    <field name="vehicle_date"/>
+                    <field name="vehicle_income"/>
+                    <field name="vehicle_cost"/>
+                    <field name="vehicle_profit"/>
+                </graph>
+            </field>
+        </record>
+
+        <record id="view_fleet_profit_search" model="ir.ui.view">
+            <field name="name">view.fleet.profit.search</field>
+            <field name="model">fleet.profit</field>
+            <field name="arch" type="xml">
+                <search string="车辆利润表" create="0">
+                    <field name="vehicle_fleet"/>
+                    <field name="vehicle_date"/>
+                    <field name="vehicle_income" type="measure"/>
+                    <field name="vehicle_cost" type="measure"/>
+                    <field name="vehicle_profit" type="measure"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_fleet_profit_window" model="ir.actions.act_window">
+            <field name="type">ir.actions.act_window</field>
+            <field name="name">fleet.profit.action</field>
+            <field name="res_model">fleet.profit</field>
+            <field name="search_view_id" ref="view_fleet_profit_search"/>
+            <field name="view_mode">tree,from,pivot,graph</field>
+            <field name="view_type">form</field>
+        </record>
+
+        <record id="menu_fleet_profit" model="ir.ui.menu">
+            <field name="name">车辆利润表</field>
+            <field name="action" ref="action_fleet_profit_window"/>
+            <field name="parent_id" ref="account_period.menu_finance_periodical_processing"/>
+        </record>
+    </data>
+</odoo>

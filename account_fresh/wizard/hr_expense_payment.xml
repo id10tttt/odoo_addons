@@ -9,7 +9,6 @@
                 <xpath expr="//form//sheet//group//group//field[@name='communication']" position="after">
                     <field name="cash_id"/>
                 </xpath>
-
             </field>
         </record>
 

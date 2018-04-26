@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- 创建群组 用户 类型 -->
+        <record id="group_fleet_repair_user" model="res.groups">
+            <field name="name">司机</field>
+            <field name="category_id" ref="fleet.module_fleet_category"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+
+        </record>
+
+        <!-- 创建群组 管理员 类型 -->
+        <record id="group_fleet_secure_user" model="res.groups">
+            <field name="name">安全员</field>
+            <field name="implied_ids" eval="[(4, ref('fleet_accident.group_fleet_repair_user'))]"/>
+            <field name="category_id" ref="fleet.module_fleet_category"/>
+        </record>
+
+
+    </data>
+</odoo>
