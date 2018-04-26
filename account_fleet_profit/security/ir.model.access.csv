@@ -1,3 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_fleet_profit,access_fleet_profit,model_fleet_profit,,1,1,1,1
-access_fleet_profit_wizard,access_fleet_profit_wizard,model_fleet_profit_wizard,,1,1,1,1
