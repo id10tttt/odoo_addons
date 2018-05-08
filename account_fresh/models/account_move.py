@@ -1,9 +1,15 @@
 # -*- coding: utf-8 -*-
-import execjs
+import json
+from lxml import etree
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 from odoo import api, fields, models, _
+from odoo.tools import float_is_zero, float_compare
+from odoo.tools.misc import formatLang
 
 from odoo.exceptions import UserError, RedirectWarning, ValidationError, Warning
 import traceback
+import odoo.addons.decimal_precision as dp
 import logging
 
 _logger = logging.getLogger(__name__)
@@ -12,7 +18,6 @@ _logger = logging.getLogger(__name__)
 class AccountMoveLine(models.Model):
     _inherit = 'account.move.line'
 
-    # name = fields.Char(required=True, string="Label")
 
     line_cash_id = fields.One2many('account.move.line.cash.id', 'move_lines_ids')
 
@@ -53,6 +58,9 @@ class AccountMoveLine(models.Model):
             if self.credit != sum(x.cash_credit for x in self.line_cash_id):
                 raise ValidationError('{0} 贷方和不等于 {1}'.format(self.account_id.display_name, self.credit))
 
+    # @api.multi
+    # def _compute_name(self):
+    #     return self.env['account.move.line'].search([], limit=1, order='write_date desc').name
 
     @api.multi
     def view_line_cash_id(self):
@@ -87,6 +95,9 @@ class AccountMove(models.Model):
     red_dashed_to = fields.Many2one('account.move', u'红冲凭证')
     red_dashed_state = fields.Boolean('红冲状态', default=False, readonly=True)
 
+    partner_id = fields.Many2many('res.partner', compute='_compute_partner_ids', string="Partner", store=True,
+                                 readonly=True)
+
     @api.multi
     def _red_dashed(self):
         self.ensure_one()
@@ -107,6 +118,13 @@ class AccountMove(models.Model):
         self.red_dashed_state = True
         self.red_dashed_to = res.id
 
+    @api.multi
+    @api.depends('line_ids.partner_id')
+    def _compute_partner_ids(self):
+        for move in self:
+            partners = move.line_ids.mapped('partner_id')
+            if partners:
+                move.partner_id = [i.id for i in partners]
 
 class AccountMoveLineCashID(models.Model):
     _name = 'account.move.line.cash.id'

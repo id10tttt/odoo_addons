@@ -14,4 +14,3 @@ access_stock_production_lot_o_user,stock.production.lot user,stock.model_stock_p
 access_stock_forecast_o_user,report.stock.forecast.user,stock.model_report_stock_forecast,account_fresh.group_stock_outside_user,1,0,0,0
 access_stock_picking_type_o_user,stock.picking.type user,stock.model_stock_picking_type,account_fresh.group_stock_outside_user,1,0,0,0
 access_account_move_line_cash_id,access_account_move_line_cash_id,model_account_move_line_cash_id,,1,1,1,1
-

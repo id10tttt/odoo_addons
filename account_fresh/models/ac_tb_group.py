@@ -38,3 +38,5 @@ class AcTbGroup(models.Model):
         string=u'公司',
         comodel_name='res.company',
     )
+
+    analytic_account_id = fields.Many2one('account.analytic.account')
