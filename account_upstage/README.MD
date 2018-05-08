@@ -18,3 +18,6 @@
     * account.asset.category 资产类型 资产科目(account_asset_id)
                                     折旧分录: 资产科目(account_depreciation_id)
                                     折旧分录: 费用科目(account_depreciation_expense_id)
+
+2018.05.08
+    * 更新日记账项目里面的科目，显示最末级
