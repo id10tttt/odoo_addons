@@ -102,6 +102,41 @@
             </field>
         </record>
 
+        <!--日记账设置-->
+        <record id="view_account_journal_form_inherit" model="ir.ui.view">
+            <field name="name">account.journal_inherit</field>
+            <field name="model">account.journal</field>
+            <field name="inherit_id" ref="account.view_account_journal_form"/>
+            <field name="arch" type="xml">
+                <!--默认借方科目-->
+                <xpath expr="//notebook//page//group//group//field[@name='default_debit_account_id']"
+                       position="replace">
+                    <field name="default_debit_account_id"
+                           domain="[('deprecated', '=', False), ('child_ids', '=', False)]"
+                           options="{'no_create_edit': True}"
+                    />
+                </xpath>
+
+                <!--默认贷方科目-->
+                <xpath expr="//notebook//page//group//group//field[@name='default_credit_account_id']"
+                       position="replace">
+                    <field name="default_credit_account_id"
+                           domain="[('deprecated', '=', False), ('child_ids', '=', False)]"
+                           options="{'no_create_edit': True}"
+                    />
+                </xpath>
+
+                <!--默认贷方科目-->
+                <xpath expr="//notebook//page//group//group//field[@name='account_control_ids']"
+                       position="replace">
+                    <field name="account_control_ids"
+                           widget="many2many_tags"
+                           domain="[('child_ids', '=', False)]"/>
+                </xpath>
+
+            </field>
+        </record>
+
         <!--客户-->
         <record id="view_partner_property_form_inherit_id" model="ir.ui.view">
             <field name="name">res.partner_inherit</field>
