@@ -1,28 +1,123 @@
 # odoo_addons
-1. ac_tb_group 科目余额表
-2. account_invoice 发票里面添加源发票，同时复写action_invoice_open_invoice，action_move_create_invoice，_prepare_invoice_line_from_po_line
-3. account_move 添加在选择现金及银行时，必须选择现金流量表行
-4. account_payment 添加现金流量表行，更改传递函数，将cash_id添加进去
-5. account_tax 修改保留的位数，为8位
-6. actual_invoice 真实发票管理：新增一个发票的录入界面，和系统的发票界面类似，只是字段有些许差异
-                  在发票行上面，添加两个按钮，一个核销，一个查看
-                  核销 cancel_after_verify
-                  查看 view_after_verify
-                  验证 verify_valid
-                  核销 verify_final
-7. fleet_vehicle 车辆上面添加供应商，同时，相同公司，不同创建相同的车牌
-8. hr_employee 修改为当前公司，不能创建相同的员工
-9. hr_expense 添加不含税单价，修改含税单价，不含税单价由含税单价计算得来
-10. hr_expense_payment 添加现金流量表行
-11. models 复写_onchange_eval，修改if not res or res == [None]
-12. product_uom 修改精度
-13. purchase  添加负责人和订单号，添加含税价格，重写不含税价格，不含税价格改为计算字段
-              price_unit = contain_tax_price / ((taxes_id.amount / 100.0) + 1.0)
-              添加车牌号
-14. res_company 添加公司允许在仓库里面扫描操作时，可以将数量，在点击的时候补全
-15. res_partner 当前公司下，不能创建相同的客户
-16. sale 添加含税价格，车牌号，订单分类，共配专车字段
-        不含税价格更改为计算字段
-        复写 _prepare_invoice_line ，主要因为添加了车牌号等字段
-17. stock 添加产品所属者
-18. stock_pack_operation 在使用条码枪扫描的时候，当公司里面设置的允许确认所有数量，即可在点击的时候出现全部按钮
+*  一些扩展
+
+* 科目显示最末级
+
+## customize_odoo 模块
+* 移植odoo 12 的 create方法，新建create_multi方法，可以在odoo 10 上 bulk create
+    * 使用： data = [{}, {}, ...{}], self.env[xxx.xxx].create_multi(data)
+ 
+## odoodemo模块(适用于odoo 10)  
+* 新增在列表上切换编辑和只读模式, dynamic switch read and write in list view
+```javascript
+    ListView.include({
+        func_switch_write_read: function () {
+            this.editable();
+            this.reload_content();
+        },
+        editable: function () {
+            let check_state = $('.switch_write_read_controller:checkbox:checked').val();
+            if (typeof check_state != "undefined") {
+                if (check_state == "on") {
+                    return "bottom";
+                }
+            }
+            return this._super.apply(this, arguments);
+        },
+        cancel_edition: function (force){
+            return this._super.apply(this, arguments)
+        },
+        render_buttons: function () {
+            let add_button = false;
+            if (!this.$buttons) {
+                add_button = true;
+            }
+            let result =  this._super.apply(this, arguments);
+            if (add_button) {
+                let self = this;
+                this.$buttons
+                    .on('click', '#switch_write_read_controller', this.func_switch_write_read.bind(this))
+                    .off('click', '.o_list_button_save')
+                    .on('click', '.o_list_button_save', this.proxy('save_edition'))
+                    .off('click', '.o_list_button_discard')
+                    .on('click', '.o_list_button_discard', function (e) {
+                        e.preventDefault();
+                        self.cancel_edition();
+                    });
+            }
+            return result;
+        }
+    });
+```
+* 在create 后面新增按钮的案例，用法的模板
+```javascript
+    ListView.include({
+        render_buttons: function () {
+            let add_button = false;
+            if (!this.$buttons) {
+                add_button = true;
+            }
+            let result = this._super.apply(this, arguments);
+            if (add_button) {
+                this.$buttons.on('click', '.o_list_add_new_button', execute_open_action.bind(this));
+            }
+            return result;
+        }
+    });
+```   
+	
+
+* 新增按钮上面的attrs，使用自带的button，来实现原生的js功能
+```javascript
+    let test_func = form_widget.WidgetButton.include({
+        on_click: function () {
+            if (this.node.attrs.custom === "test_input_custom_js") {
+                console.log("Hello world!");
+                return;
+            }
+            this._super();
+        },
+    });
+```
+
+## switch_read_write 模块(适用于odoo 12)
+* 新增在列表上切换编辑和只读模式, dynamic switch read and write in list view
+```javascript
+    ListController.include({
+        custom_events: _.extend({}, ListController.prototype.custom_events, {update_fields: '_updateFields',}),
+        renderButtons: function ($node) {
+            this._super.apply(this, arguments);
+            if (this.$buttons) {
+                this.$mode_switch = $(QWeb.render('switch_read_write.switch', {
+                    id: 'mk-list-switch-' + this.controllerID,
+                    label: "编辑",
+                }));
+                this.$buttons.find('.read_write_list_button_switch').html(this.$mode_switch);
+                this.$mode_switch.on('change', 'input[type="checkbox"]', this._onSwitchMode.bind(this));
+                this.$mode_switch.find('input[type="checkbox"]').prop('checked', !!this.editable);
+            }
+        },
+        _updateFields: function (event) {
+            event.stopPropagation();
+            var state = this.model.get(this.handle);
+            state.fieldsInfo[this.viewType] = event.data.fields;
+            this.renderer.arch.children = event.data.arch;
+            this.update({fieldsInfo: state.fieldsInfo}, {reload: true});
+        },
+        _updateButtons: function (mode) {
+            this._super.apply(this, arguments);
+            this.$mode_switch.find('input[type="checkbox"]').prop('checked', !!this.editable);
+        },
+        _onSwitchMode: function (event) {
+            var editable = $(event.currentTarget).is(':checked');
+            if (editable) {
+                this.editable = 'top';
+                this.renderer.editable = this.editable;
+            } else {
+                this.editable = false;
+                this.renderer.editable = false;
+            }
+            this.update({}, {reload: true}).then(this._updateButtons.bind(this, 'readonly'));
+        }
+    });
+```
