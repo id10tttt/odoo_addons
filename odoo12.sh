@@ -17,6 +17,12 @@ sudo apt-get update && sudo apt-get install docker-ce docker-ce-cli containerd.i
 sudo usermod -aG docker ${USER}
 sudo systemctl restart docker
 
+# 更改docker 源
+echo "
+{
+  \""registry-mirrors\"": [\""https://docker.mirrors.ustc.edu.cn\""]
+}" > /etc/docker/daemon.json
+
 # 生成文件
 mkdir -p ~/odoo12_docker/pgdata
 mkdir -p ~/odoo12_docker/share
