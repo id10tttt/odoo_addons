@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="hr_expense_form_view_inherit_id" model="ir.ui.view">
+            <field name="name">hr_expense_form_view_inherit</field>
+            <field name="model">hr.expense</field>
+            <field name="inherit_id" ref="hr_expense.hr_expense_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form//sheet//group//group//field[@name='tax_ids']" position="replace">
+                    <field name="tax_ids" domain="[('type_tax_use', '=', 'purchase')]" widget="many2many_tags"/>
+                </xpath>
+                <xpath expr="//form//sheet//group//group//field[@name='unit_amount']" position="before">
+                    <field name="contain_tax_price_unit" string="含税单价"/>
+                </xpath>
+
+                <xpath expr="//form//sheet//group//group//field[@name='unit_amount']" position="replace">
+                    <field name="unit_amount" readonly="True" string="不含税单价"/>
+                </xpath>
+
+            </field>
+        </record>
+
+
+        <!--<record id="hr_expense_view_pivot_inherit" model="ir.ui.view">-->
+            <!--<field name="name">hr_expense_view_pivot_inherit</field>-->
+            <!--<field name="model">hr.expense</field>-->
+            <!--<field name="inherit_id" ref="hr_expense.hr_expense_view_pivot"/>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<xpath expr="//pivot//field[@name='employee_id']" position="after">-->
+                    <!--<field name="vehicle_id" type="row"/>-->
+                <!--</xpath>-->
+            <!--</field>-->
+        <!--</record>-->
+
+
+        <!--<record id="view_hr_expense_sheet_pivot_inherit" model="ir.ui.view">-->
+            <!--<field name="name">hr.expense.sheet.pivot_inherit</field>-->
+            <!--<field name="model">hr.expense.sheet</field>-->
+            <!--<field name="inherit_id" ref="hr_expense.view_hr_expense_sheet_pivot"/>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<xpath expr="//pivot//field[@name='employee_id']" position="after">-->
+                    <!--<field name="vehicle_id" type="row"/>-->
+                <!--</xpath>-->
+            <!--</field>-->
+        <!--</record>-->
+
+
+    </data>
+</odoo>

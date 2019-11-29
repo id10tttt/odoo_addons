@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_picking_form_inherit" model="ir.ui.view">
+            <field name="name">stock.picking_view_picking_form_inherit</field>
+            <field name="model">stock.picking</field>
+            <field eval="12" name="priority"/>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <!--<xpath expr="//form//header//button[@name='button_scrap']" position="after">-->
+                    <!--<button name="confirm_all_move"-->
+                            <!--string='全部确认'-->
+                            <!--type="object"-->
+                            <!--class="oe_highlight"/>-->
+                <!--</xpath>-->
+
+                <xpath expr="//form//sheet//notebook//page//field[@name='move_lines']//kanban//field[@name='state']" position="after">
+                    <field name="price_unit" string="单价"/>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

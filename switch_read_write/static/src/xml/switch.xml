@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates t-name="switchreadwrite" id="switchreadwrite">
+    <t t-name="switch_read_write.switch">
+        <span class="switch">
+            <input type="checkbox" t-att-id="id" />
+            <label t-att-for="id">
+                <t t-if="label"><t t-esc="label"/></t>
+            </label>
+        </span>
+    </t>
+    <t t-extend="ListView.buttons">
+        <t t-jquery="button.o_list_button_save" t-operation="after">
+            <div class="read_write_list_button_switch">
+                <span class="switch">
+                    <input id="mk-list-switch-controller_33" type="checkbox"/>
+                    <label for="mk-list-switch-controller_33">
+                        编辑
+                    </label>
+                </span>
+            </div>
+        </t>
+    </t>
+</templates>
