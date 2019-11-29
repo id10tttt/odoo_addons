@@ -50,7 +50,7 @@ RUN set -x; \
 
 # install depends
 RUN set -x; \
-        pip3 install xlwt num2words requests zeep==3.4.0 ipython3 simplejson celery
+        pip3 install xlwt num2words requests zeep==3.4.0 ipython3 simplejson celery redis
 
 # install latest postgresql-client
 RUN set -x; \
