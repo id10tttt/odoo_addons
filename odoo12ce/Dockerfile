@@ -41,6 +41,7 @@ RUN set -x; \
             python3-watchdog \
             xz-utils \
             python3-simplejson \
+            redis-server \
         && curl -o wkhtmltox.deb -sSL https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.stretch_amd64.deb \
         && echo '7e35a63f9db14f93ec7feeb0fce76b30c08f2057 wkhtmltox.deb' | sha1sum -c - \
         && dpkg --force-depends -i wkhtmltox.deb\
@@ -49,7 +50,7 @@ RUN set -x; \
 
 # install depends
 RUN set -x; \
-        pip3 install xlwt num2words requests zeep==3.4.0 ipython3 simplejson
+        pip3 install xlwt num2words requests zeep==3.4.0 ipython3 simplejson celery
 
 # install latest postgresql-client
 RUN set -x; \
@@ -80,8 +81,8 @@ RUN set -x;\
 
 # Install Odoo
 ENV ODOO_VERSION 12.0
-ARG ODOO_RELEASE=20191118
-ARG ODOO_SHA=5e6d018fec1c5aaff07682a5fecfd33d2c6fa1ca
+ARG ODOO_RELEASE=20191128
+ARG ODOO_SHA=bf15a1be829612095389f42fcac610e1d328a100
 RUN set -x; \
         curl -o odoo.deb -sSL http://nightly.odoo.com/${ODOO_VERSION}/nightly/deb/odoo_${ODOO_VERSION}.${ODOO_RELEASE}_all.deb \
         && echo "${ODOO_SHA} odoo.deb" | sha1sum -c - \
