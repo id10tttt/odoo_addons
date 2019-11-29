@@ -4,6 +4,7 @@
     "version": "1.0.0",
     "category": "API",
     "author": "1di0t",
+    "license": "LGPL-3",
     "summary": "odoo celery",
     "support": "dgqcjx@gmail.com",
     "description": """ celery usage demo""",
