@@ -4,15 +4,6 @@ LABEL maintainer="1di0t"
 # Generate locale C.UTF-8 for postgres and general locale data
 ENV LANG C.UTF-8
 
-# 更新源 
-RUN set -x; \
-          echo 'deb http://mirrors.163.com/debian/ stretch main non-free contrib \
-          deb http://mirrors.163.com/debian/ stretch-updates main non-free contrib \
-          deb-src http://mirrors.163.com/debian/ stretch main non-free contrib \
-          deb-src http://mirrors.163.com/debian/ stretch-updates main non-free contrib \
-          deb http://mirrors.163.com/debian-security/ stretch/updates main non-free contrib \
-          deb-src http://mirrors.163.com/debian-security/ stretch/updates main non-free contrib' > /etc/apt/sources.list
-
 RUN apt update && apt upgrade -y
 
 # Install some deps, lessc and less-plugin-clean-css, and wkhtmltopdf
