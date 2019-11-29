@@ -1,0 +1,4 @@
+[celery]
+user_name = odoo
+user_password = odoo
+url = http://127.0.0.1:8069
