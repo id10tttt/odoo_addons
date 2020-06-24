@@ -50,7 +50,7 @@ RUN set -x; \
 
 # install depends
 RUN set -x; \
-        pip3 install xlwt num2words requests zeep==3.4.0 ipython3 simplejson celery redis
+        pip3 install xlwt num2words requests zeep==3.4.0 simplejson celery redis
 
 # install latest postgresql-client
 RUN set -x; \
@@ -81,8 +81,8 @@ RUN set -x;\
 
 # Install Odoo
 ENV ODOO_VERSION 12.0
-ARG ODOO_RELEASE=20191128
-ARG ODOO_SHA=bf15a1be829612095389f42fcac610e1d328a100
+ARG ODOO_RELEASE=20200624
+ARG ODOO_SHA=e49c275c4e020d46cc06203f6094738881b08103
 RUN set -x; \
         curl -o odoo.deb -sSL http://nightly.odoo.com/${ODOO_VERSION}/nightly/deb/odoo_${ODOO_VERSION}.${ODOO_RELEASE}_all.deb \
         && echo "${ODOO_SHA} odoo.deb" | sha1sum -c - \
