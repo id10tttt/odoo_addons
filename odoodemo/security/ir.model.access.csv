@@ -1,3 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_add_new_button,add_new_button,model_add_new_button,,1,1,1,1
-access_add_new_button_line,add_new_button_line,model_add_new_button_line,,1,1,1,1

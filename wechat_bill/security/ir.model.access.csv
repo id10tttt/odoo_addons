@@ -1,5 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_wechat_bill,access_wechat_bill,model_wechat_bill,,1,1,1,1
-access_wechat_bill_type,access_wechat_bill_type,model_wechat_bill_type,,1,1,1,1
-access_wechat_bill_payment_method,access_wechat_bill_payment_method,model_wechat_bill_payment_method,,1,1,1,1
-access_wechat_bill_payment_state,access_wechat_bill_payment_state,model_wechat_bill_payment_state,,1,1,1,1
