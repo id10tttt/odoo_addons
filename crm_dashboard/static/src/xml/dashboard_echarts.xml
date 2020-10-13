@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="crm_dashboard.EchartsCrmDashboard">
+        <div>
+            <div id="crm_dashboard_bar" class="mt-2" style="width: 800px;height:500px;"/>
+            <div id="crm_dashboard_line" class="mt-2" style="width: 800px;height:500px;"/>
+        </div>
+    </t>
+
+</templates>
