@@ -1,0 +1,22 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* crm_dashboard
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e-20200817\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-10-15 01:52+0000\n"
+"PO-Revision-Date: 2020-10-15 01:52+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: crm_dashboard
+#: model:ir.actions.client,name:crm_dashboard.action_crm_dashboard_partner_echarts
+#: model:ir.ui.menu,name:crm_dashboard.menu_crm_dashboard_echarts
+msgid "Partner Dashboard"
+msgstr "注册客户"

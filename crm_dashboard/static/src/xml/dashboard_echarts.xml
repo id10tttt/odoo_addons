@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    <t t-name="crm_dashboard.EchartsCrmDashboard">
+        <head>
+          <link href="/crm_dashboard/static/src/css/DashBoard.css" rel="stylesheet"/>
+        </head>
+        <body>
+
+        <div class="o_content">
+             <div class="row" style="padding: 10px 0 20px 0;">
+                  <div class="col-sm-1">
+                   开始时间：
+                 </div>
+                 <div class="col-sm-2">
+                    <input type="text" id="date_start" name="date_start" placeholder='YYYY-MM-DD'/>
+                 </div>
+                  <div class="col-sm-1">
+                   结束时间：
+                 </div>
+               <div class="col-sm-2">
+                  <input type="text" id="date_stop" name="date_stop" placeholder='YYYY-MM-DD'/>
+               </div>
+                 <div class="col-sm-1">
+                     <button type="button" id="datetime_apply_search" class="btn btn-primary oe_highlight">应用</button>
+                 </div>
+                <script type="text/javascript">
+                    $("#date_start").datepicker({
+                        changeMonth: true,
+                        changeYear: true,
+                        dateFormat: "yy-mm-dd"
+                    });
+                    $("#date_stop").datepicker({
+                        changeMonth: true,
+                        changeYear: true,
+                        dateFormat: "yy-mm-dd"
+                    });
+                </script>
+             </div>
+            <div class="row" style="padding: 10px 0 20px 0;">
+                     <div class="col-sm-3">
+                       <div class="cards">
+                        <div class="card-one flex_column_center">
+                            <div class="number" id="reg_count">-/个</div>
+                            <div class="font-number">注册客户</div>
+                        </div>
+                       </div>
+                     </div>
+                <div class="col-sm-3">
+                           <div class="cards">
+                            <div class="card-two flex_column_center">
+                                <div class="number" id="order_partner_count">-/个</div>
+                                <div class="font-number">下单客户数量</div>
+                            </div>
+                           </div>
+                       </div>
+                <div class="col-sm-3">
+                           <div class="cards">
+                            <div class="card-three flex_column_center">
+                                <div class="number" id="order_count">-/个</div>
+                                <div class="font-number">订单数量</div>
+                            </div>
+                           </div>
+                       </div>
+                <div class="col-sm-3">
+                           <div class="cards">
+                            <div class="card-four flex_column_center">
+                                <div class="number" id="order_total">￥-</div>
+                                <div class="font-number">交易金额</div>
+                            </div>
+                           </div>
+                       </div>
+
+            </div>
+            <div class="row" style="padding: 10px 0 0 0;background: #ffffff">
+                 <div class="col-sm-6">
+                     <div id="crm_dashboard_count" class="mt-2" style="width: 800px;height:500px;"/>
+                 </div>
+                <div class="col-sm-6">
+                     <div id="crm_dashboard_order" class="mt-2" style="width: 800px;height:500px;"/>
+                 </div>
+
+             </div>
+            <div class="row" style="padding: 10px 0 20px 0;background: #ffffff">
+                  <div class="col-sm-6">
+                       <div id="crm_dashboard_stage" class="mt-2" style="width: 800px;height:550px;"/>
+                  </div>
+                <div class="col-sm-6">
+                      <div class="row" style="font-size:18px;font-weight:bold;">
+                          客户类型
+                      </div>
+                    <div id="customer_category"
+                         style="background: #000000;height:1px;margin-top:20px">
+                    </div>
+
+                  </div>
+             </div>
+
+
+        </div>
+         </body>
+    </t>
+
+</templates>
