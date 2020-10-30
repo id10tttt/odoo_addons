@@ -8,9 +8,9 @@
     "depends": ['base', 'product'],
     'data': [
         'security/ir.model.access.csv',
+        'views/wechat_bill.xml',
         'views/menu.xml',
         'views/assets.xml',
-        'views/wechat_bill.xml',
     ],
     'qweb': [
         "static/src/xml/wechat_bill_dashboard.xml"
