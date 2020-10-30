@@ -2,8 +2,8 @@
 <templates id="template" xml:space="preserve">
     <t t-name="wechat_bill.WeChatBillDashboardTemplate">
 <!--        <head>-->
-<!--          <link href="/wechat_bill/static/scss/bill_dashboard.css" rel="stylesheet"/>-->
-<!--        </head>-->
+        <!--          <link href="/wechat_bill/static/scss/bill_dashboard.css" rel="stylesheet"/>-->
+        <!--        </head>-->
         <body>
             <div class="o_content">
                 <div class="row" style="padding: 10px 0 20px 0;">
@@ -20,7 +20,8 @@
                       <input type="text" id="date_stop" name="date_stop" placeholder='YYYY-MM-DD'/>
                    </div>
                     <div class="col-sm-1">
-                         <button type="button" id="datetime_apply_search" class="btn btn-primary oe_highlight">应用</button>
+                         <button type="button" id="datetime_apply_search"
+                                 class="btn btn-primary oe_highlight">应用</button>
                      </div>
                     <div class="col-sm-5">
                          <button type="button" style="float: right" id="o_cp_fullscreen"
@@ -28,14 +29,12 @@
                      </div>
                     <script type="text/javascript">
                         $("#date_start").datepicker({
-                            language: 'zh-CN',
                             changeMonth: true,
                             changeYear: true,
                             dateFormat: "yy-mm-dd",
                             todayBtn: 1
                         });
                         $("#date_stop").datepicker({
-                            language: 'zh-CN',
                             changeMonth: true,
                             changeYear: true,
                             dateFormat: "yy-mm-dd",

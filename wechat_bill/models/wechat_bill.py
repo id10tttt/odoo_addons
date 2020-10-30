@@ -13,7 +13,6 @@ def echarts_wechat_bill_daily_bi(record_values) -> Line:
         return {}
     xaxis_data = [x.get('transaction_date') for x in record_values]
     yaxis_data = [x.get('daily_amount') for x in record_values]
-    print('yaxis_data: ', yaxis_data)
     c = (
         Line()
             .add_xaxis(xaxis_data=xaxis_data)
