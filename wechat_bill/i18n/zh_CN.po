@@ -1,0 +1,211 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* wechat_bill
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e-20201008\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-10-30 03:19+0000\n"
+"PO-Revision-Date: 2020-10-30 03:19+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: wechat_bill
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill__amount
+msgid "Amount"
+msgstr "金额(元)"
+
+#. module: wechat_bill
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill__create_uid
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill_payment_method__create_uid
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill_payment_state__create_uid
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill_type__create_uid
+msgid "Created by"
+msgstr "创建人"
+
+#. module: wechat_bill
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill__create_date
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill_payment_method__create_date
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill_payment_state__create_date
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill_type__create_date
+msgid "Created on"
+msgstr "创建时间"
+
+#. module: wechat_bill
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill__display_name
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill_payment_method__display_name
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill_payment_state__display_name
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill_type__display_name
+msgid "Display Name"
+msgstr "显示名称"
+
+#. module: wechat_bill
+#: model:ir.model.fields.selection,name:wechat_bill.selection__wechat_bill__income_expend_type__expend
+msgid "Expenses"
+msgstr "支出"
+
+#. module: wechat_bill
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill__id
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill_payment_method__id
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill_payment_state__id
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill_type__id
+msgid "ID"
+msgstr ""
+
+#. module: wechat_bill
+#: model:ir.model.fields.selection,name:wechat_bill.selection__wechat_bill__income_expend_type__income
+msgid "Income"
+msgstr "收入"
+
+#. module: wechat_bill
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill____last_update
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill_payment_method____last_update
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill_payment_state____last_update
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill_type____last_update
+msgid "Last Modified on"
+msgstr "最后修改日"
+
+#. module: wechat_bill
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill__write_uid
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill_payment_method__write_uid
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill_payment_state__write_uid
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill_type__write_uid
+msgid "Last Updated by"
+msgstr "最后更新者"
+
+#. module: wechat_bill
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill__write_date
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill_payment_method__write_date
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill_payment_state__write_date
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill_type__write_date
+msgid "Last Updated on"
+msgstr "最后更新时间"
+
+#. module: wechat_bill
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill__merchant_number
+msgid "Merchant number"
+msgstr "商户单号"
+
+#. module: wechat_bill
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill_payment_method__name
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill_payment_state__name
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill_type__name
+msgid "Name"
+msgstr "名称"
+
+#. module: wechat_bill
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill__note
+msgid "Note"
+msgstr "备注"
+
+#. module: wechat_bill
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill__payment_method
+msgid "Payment method"
+msgstr "支付方式"
+
+#. module: wechat_bill
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill__payment_state_id
+msgid "Payment state"
+msgstr "当前状态"
+
+#. module: wechat_bill
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill__transaction_datetime
+msgid "Transaction datetime"
+msgstr "交易时间"
+
+#. module: wechat_bill
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill__transaction_number
+msgid "Transaction number"
+msgstr "交易单号"
+
+#. module: wechat_bill
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill__transaction_partner_id
+msgid "Transaction partner"
+msgstr "交易对方"
+
+#. module: wechat_bill
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill__transaction_product_id
+msgid "Transaction product"
+msgstr "商品"
+
+#. module: wechat_bill
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill__transaction_type_id
+msgid "Transaction type"
+msgstr "交易类型"
+
+#. module: wechat_bill
+#: model:ir.model.fields,field_description:wechat_bill.field_wechat_bill__income_expend_type
+msgid "Type"
+msgstr "收/支"
+
+#. module: wechat_bill
+#: model:ir.actions.client,name:wechat_bill.action_wechat_bill_dashboard
+#: model:ir.ui.menu,name:wechat_bill.menu_wechat_bill_dashboard
+msgid "WeChat Bill Dashboard"
+msgstr "账单Dashboard"
+
+#. module: wechat_bill
+#: model:ir.ui.menu,name:wechat_bill.wechat_bill_menu_child
+#: model:ir.ui.menu,name:wechat_bill.wechat_bill_menu_child_action
+#: model:ir.ui.menu,name:wechat_bill.wechat_bill_menu_root
+msgid "Wechat Bill"
+msgstr "微信账单"
+
+#. module: wechat_bill
+#: model:ir.actions.act_window,name:wechat_bill.action_wechat_bill_view
+msgid "Wechat bill"
+msgstr "微信账单"
+
+#. module: wechat_bill
+#. openerp-web
+#: code:addons/wechat_bill/static/src/xml/wechat_bill_dashboard.xml:0
+#: code:addons/wechat_bill/static/src/xml/wechat_bill_dashboard.xml:0
+#, python-format
+msgid "YYYY-MM-DD"
+msgstr ""
+
+#. module: wechat_bill
+#: model:ir.model,name:wechat_bill.model_wechat_bill
+msgid "wechat.bill"
+msgstr ""
+
+#. module: wechat_bill
+#: model:ir.model,name:wechat_bill.model_wechat_bill_payment_method
+msgid "wechat.bill.payment.method"
+msgstr ""
+
+#. module: wechat_bill
+#: model:ir.model,name:wechat_bill.model_wechat_bill_payment_state
+msgid "wechat.bill.payment.state"
+msgstr ""
+
+#. module: wechat_bill
+#: model:ir.model,name:wechat_bill.model_wechat_bill_type
+msgid "wechat.bill.type"
+msgstr ""
+
+#. module: wechat_bill
+#. openerp-web
+#: code:addons/wechat_bill/static/src/xml/wechat_bill_dashboard.xml:0
+#, python-format
+msgid "应用"
+msgstr ""
+
+#. module: wechat_bill
+#. openerp-web
+#: code:addons/wechat_bill/static/src/xml/wechat_bill_dashboard.xml:0
+#, python-format
+msgid "开始时间："
+msgstr ""
+
+#. module: wechat_bill
+#. openerp-web
+#: code:addons/wechat_bill/static/src/xml/wechat_bill_dashboard.xml:0
+#, python-format
+msgid "结束时间："
+msgstr ""

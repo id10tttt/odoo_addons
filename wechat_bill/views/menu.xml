@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="action_wechat_bill_dashboard" model="ir.actions.client">
+            <field name="name">WeChat Bill Dashboard</field>
+            <field name="tag">wechat_bill.wechat_bill_dashboard</field>
+        </record>
+
+        <menuitem id="menu_wechat_bill_dashboard"
+                  name="WeChat Bill Dashboard"
+                  action="action_wechat_bill_dashboard"
+                  parent="wechat_bill.wechat_bill_menu_root"
+                  groups="base.group_user"
+                  sequence="1"/>
+    </data>
+</odoo>

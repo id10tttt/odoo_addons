@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record id="view_wechat_bill_form" model="ir.ui.view">
+            <field name="name">wechat.bill.form</field>
+            <field name="model">wechat.bill</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="transaction_datetime"/>
+                                <field name="payment_state_id" options="{'no_quick_create': True, 'no_create_edit': True}"/>
+                            </group>
+                            <group>
+                                <field name="amount"/>
+                            </group>
+                        </group>
+
+                        <group>
+                            <group>
+                                <field name="transaction_type_id" options="{'no_quick_create': True, 'no_create_edit': True}"/>
+                            </group>
+                            <group>
+                                <field name="transaction_partner_id" options="{'no_quick_create': True, 'no_create_edit': True}"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="transaction_product_id" options="{'no_quick_create': True, 'no_create_edit': True}"/>
+                            </group>
+                            <group>
+                                <field name="income_expend_type"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="payment_method"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="transaction_number"/>
+                            </group>
+                            <group>
+                                <field name="merchant_number"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="note"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_wechat_bill_tree" model="ir.ui.view">
+            <field name="name">wechat.bill.tree</field>
+            <field name="model">wechat.bill</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="transaction_datetime"/>
+                    <field name="transaction_type_id"/>
+                    <field name="transaction_partner_id"/>
+                    <field name="transaction_product_id"/>
+                    <field name="income_expend_type"/>
+                    <field name="amount"/>
+                    <field name="payment_method"/>
+                    <field name="payment_state_id"/>
+                    <field name="transaction_number"/>
+                    <field name="merchant_number"/>
+                    <field name="note"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_wechat_bill_view">
+            <field name="name">Wechat bill</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wechat.bill</field>
+            <field name="view_mode">tree,form,graph</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+
+        <menuitem id="wechat_bill_menu_root" name="Wechat Bill"
+                  web_icon="wechat_bill,static/description/icon.png"/>
+
+        <menuitem id="wechat_bill_menu_child" name="Wechat Bill"
+                  parent="wechat_bill_menu_root" sequence="2"/>
+
+        <menuitem id="wechat_bill_menu_child_action" name="Wechat Bill"
+                  action="action_wechat_bill_view"
+                  parent="wechat_bill_menu_child"/>
+    </data>
+</odoo>
