@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-extend="SearchView.extended_search.proposition">
+        <t t-jquery=".o_filter_condition" t-operation="replace">
+            <div role="menuitem" class="dropdown-item-text o_filter_condition">
+                <span class="o_or_filter">or</span>
+                <span>
+                    <input list="browsers" class="o_searchview_extended_prop_field" name="browser">
+                        <datalist class="o_input" id="browsers">
+                            <t t-foreach="widget.attrs.fields" t-as="field">
+                                <option t-att="{'selected': field === widget.attrs.selected ? 'selected' : null}"
+                                        t-att-value="field.name">
+                                    <t t-esc="field.string"/>
+                                </option>
+                            </t>
+                        </datalist>
+                    </input>
+                    <span class="o_searchview_extended_delete_prop fa fa-trash-o" role="img" aria-label="Delete"
+                          title="Delete"/>
+                </span>
+                <select class="o_input o_searchview_extended_prop_op"/>
+                <span class="o_searchview_extended_prop_value"/>
+            </div>
+        </t>
+    </t>
+</templates>
